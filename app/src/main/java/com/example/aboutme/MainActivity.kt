@@ -12,25 +12,31 @@ import androidx.databinding.DataBindingUtil
 import com.example.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var myName: MyName = MyName("Oluwafemi")
+
     private lateinit var binding:ActivityMainBinding
-    private lateinit var nickNameEditText: EditText
-    private lateinit var nickNameTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView( this ,R.layout.activity_main)
-        nickNameTextView = findViewById(R.id.nick_name_text)
-        nickNameEditText = findViewById(R.id.nickname_edit_text)
-        findViewById<Button>(R.id.done_buttom).setOnClickListener {
+
+        binding.myName = myName
+        binding.doneButtom.setOnClickListener {
             addNickname(it)
         }
     }
 
     private fun addNickname(it: View?) {
         // Hide the keyboard.
-        nickNameTextView.text = nickNameEditText.text
-        nickNameTextView.visibility = View.VISIBLE
+
+
+        binding.apply {
+            myName?.nickName = binding.nicknameEditText.text.toString()
+            invalidateAll()
+            nickNameText.visibility = View.VISIBLE
+        }
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(it!!.windowToken, 0)
-        nickNameEditText.text.clear()
+        binding.nicknameEditText.text.clear()
     }
 }

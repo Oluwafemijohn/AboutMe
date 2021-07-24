@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="myName"
+            type="com.example.aboutme.MyName" />
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -9,11 +16,10 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_padding"
-            android:text="@string/oluwafemi_john" />
+            android:text="@={myName.name}" />
 
         <EditText
             android:id="@+id/nickname_edit_text"
@@ -41,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:text="@={myName.nickName}"
             android:visibility="gone" />
 
         <ImageView
